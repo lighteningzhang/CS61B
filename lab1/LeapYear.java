@@ -33,6 +33,7 @@ public class LeapYear {
                 checkLeapYear(year);
             } catch (NumberFormatException e) {
                 System.out.printf("%s is not a valid number.\n", args[i]);
+                System.out.printfln()
             }
         }
     }
