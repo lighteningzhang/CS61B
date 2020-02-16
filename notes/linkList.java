@@ -19,9 +19,8 @@ public class linkList{
         linkList l = new linkList(2);
         l = new linkList(100,l);
         l = new linkList(50,l);
-        System.out.println(l.size());
-        System.out.println(l.first.val);
-        System.out.println(l.iterativeSize());
+        System.out.println(l.getIt(0));
+
     }
     /** adds node to front of a linklist */
     public void add(node n){
@@ -42,6 +41,20 @@ public class linkList{
             return 1;
         else
             return 1+this.rest.size();
+    }
+    public int get(int i){
+        if(i==0){
+            return first.val;
+        }
+        return this.rest.get(i-1);
+    }
+    public int getIt(int i){
+        linkList l = this;
+        while(i!=0){
+            i--;
+            l = l.rest;
+        }
+        return l.first.val;
     }
     public static int pass_node_size(node n){
         if(n.next==null)
