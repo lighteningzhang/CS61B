@@ -58,6 +58,23 @@ public class SLList{
         }
     }
 
+    public static IntNode helper(IntNode p){
+        if(p==null)
+            return p;
+        else if(p.next == null)
+            return p;
+        else{
+            IntNode re = helper(p.next);
+            p.next.next =  p;
+            p.next = null;
+            return re;
+        }
+    }
+
+    public static IntNode reverse(IntNode first){
+        first = helper(first);
+        return first;
+    }
 
     public void reverseIt(){
         helper(first,null);
@@ -82,7 +99,7 @@ public class SLList{
         ll.insert(8, 3);
         System.out.println("Before reversing: ");
         ll.print();
-        ll.reverseIt();
+        ll.first = reverse(ll.first);
         System.out.println("After reversing: ");
         ll.print();
     }
