@@ -16,12 +16,12 @@ public class ArrayDeque<T> {
         nxt_l = 1; 
     }
     
-    T[] resize(int size){
+    private T[] resize(int size){
         T[] arr = (T[]) new Object[size];
         return arr;
     }
 
-    public T[] assign_new_arr(T[] n_arr){
+    private T[] assign_new_arr(T[] n_arr){
         int cur_f =(nxt_f+1)%arr.length;
 
         for(int i = 1; i <= sz ; i++){
@@ -75,11 +75,12 @@ public class ArrayDeque<T> {
     }
 
     public T removeFirst(){
-        if(this.isEmpty())
+        if(sz == 0)
             return null;
         sz -= 1;
         nxt_f = (nxt_f+1)%arr.length;
         T val = arr[nxt_f];
+        arr[nxt_f] = null;
        if(sz*4<arr.length){
             T[] n_arr = resize(arr.length/2);
             arr = assign_new_arr(n_arr);
@@ -88,11 +89,12 @@ public class ArrayDeque<T> {
     }
 
     public T removeLast(){
-        if(this.isEmpty())
+        if(sz == 0)
             return null;
         sz -= 1;
         nxt_l = (nxt_l-1+arr.length)%arr.length;
         T val = arr[nxt_l];
+        arr[nxt_l] = null;
         if(sz*4<arr.length){
             T[] n_arr = resize(arr.length/2);
             arr = assign_new_arr(n_arr);
@@ -105,15 +107,14 @@ public class ArrayDeque<T> {
         if(index == 0){
             return arr[first];
         }
+        else if(index >= sz){
+            return null;
+        }
         for(int i = 1; (i <= index) && (index < sz); i++){
             first = (first+1)%arr.length;
         }
-        if(index >= sz){
-            return null;
-        }
-        else{
-            return arr[first];
-        }
+        return arr[first];
+        
     }
 
     // public static void main(String[] args) {
