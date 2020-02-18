@@ -6,10 +6,10 @@
  * be at least 25%
  */
 public class ArrayDeque<T> {
-    T[] arr;
-    int sz = 0;
-    int nxt_f,nxt_l;
-    public ArrayDeque(){
+    private T[] arr;
+    private int sz = 0;
+    private int nxt_f,nxt_l;
+    public ArrayDeque() {
         arr = (T []) new Object[8];
         sz = 0;
         nxt_f = 0;
@@ -75,6 +75,8 @@ public class ArrayDeque<T> {
     }
 
     public T removeFirst(){
+        if(this.isEmpty())
+            return null;
         sz -= 1;
         nxt_f = (nxt_f+1)%arr.length;
         T val = arr[nxt_f];
@@ -86,6 +88,8 @@ public class ArrayDeque<T> {
     }
 
     public T removeLast(){
+        if(this.isEmpty())
+            return null;
         sz -= 1;
         nxt_l = (nxt_l-1+arr.length)%arr.length;
         T val = arr[nxt_l];
@@ -101,7 +105,7 @@ public class ArrayDeque<T> {
         if(index == 0){
             return arr[first];
         }
-        for(int i = 1; i <= index && index<sz; i++){
+        for(int i = 1; (i <= index) && (index < sz); i++){
             first = (first+1)%arr.length;
         }
         if(index >= sz){
@@ -112,18 +116,18 @@ public class ArrayDeque<T> {
         }
     }
 
-    public static void main(String[] args) {
-        ArrayDeque<Integer> aD = new ArrayDeque<Integer>();
-        for(int i=3; i < 10; i++)
-            aD.addFirst(i);
-        aD.printDeque();
-        System.out.println(aD.get(4));
-        System.out.println(aD.removeLast());
-        aD.printDeque();
-        System.out.println(aD.removeFirst());
-        System.out.println(aD.removeFirst());
-        System.out.println(aD.removeLast());
-        aD.printDeque();
-    }
+    // public static void main(String[] args) {
+    //     ArrayDeque<Integer> aD = new ArrayDeque<Integer>();
+    //     for(int i=3; i < 10; i++)
+    //         aD.addFirst(i);
+    //     aD.printDeque();
+    //     System.out.println(aD.get(4));
+    //     System.out.println(aD.removeLast());
+    //     aD.printDeque();
+    //     System.out.println(aD.removeFirst());
+    //     System.out.println(aD.removeFirst());
+    //     System.out.println(aD.removeLast());
+    //     aD.printDeque();
+    // }
 
 }

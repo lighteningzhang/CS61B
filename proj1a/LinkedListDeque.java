@@ -1,9 +1,9 @@
 class LinkedListDeque<T>{
-    Node sentinel;
-    int sz = 0;
-    class Node{
-        T item;
-        Node nxt,prev;
+    private Node sentinel;
+    private int sz = 0;
+    private class Node{
+        private T item;
+        private Node nxt,prev;
         public Node(T item,Node nxt,Node prev){
             this.item = item;
             this.nxt = nxt;
@@ -83,7 +83,7 @@ class LinkedListDeque<T>{
         return p.item;
     }
     
-    public T getRecursive(Node p, int index){
+    private T getRecursive(Node p, int index){
         if(p.nxt == sentinel && index!=0){
             System.out.println("Wrong index!");
             return sentinel.item;
@@ -100,15 +100,16 @@ class LinkedListDeque<T>{
         return getRecursive(sentinel.nxt, index);
     }
 
-    public static void main(String[] args) {
-        LinkedListDeque<String> LLD = new LinkedListDeque<>();
-        LLD.addFirst("First");
-        LLD.addLast("Second");
-        LLD.addLast("Third");
-        LLD.addLast("Forth");
-        // LLD.removeLast(); 
-        // LLD.removeFirst();
-        System.out.println(LLD.getRecursive(4));
-        LLD.printDeque();
-    }
+    // public static void main(String[] args) {
+    //     LinkedListDeque<String> LLD = new LinkedListDeque<>();
+    //     LLD.addFirst("First");
+    //     LLD.addLast("Second");
+    //     LLD.addLast("Third");
+    //     LLD.addLast("Forth");
+    //     // LLD.removeLast(); 
+    //     // LLD.removeFirst();
+    //     System.out.println(LLD.getRecursive(4));
+    //     LLD.printDeque();
+    // }
 }
+
