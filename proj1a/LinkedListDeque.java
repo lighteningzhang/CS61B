@@ -1,6 +1,6 @@
 class LinkedListDeque<T>{
     Node sentinel;
-    int sz=0;
+    int sz = 0;
     class Node{
         T item;
         Node nxt,prev;
@@ -20,7 +20,7 @@ class LinkedListDeque<T>{
     }
 
     public void addFirst(T val){
-        sz+=1;
+        sz += 1;
         sentinel.nxt = new Node(val,sentinel.nxt,sentinel);
         sentinel.nxt.nxt.prev = sentinel.nxt;
     // Node add_node = new Node(val,sentinel.nxt,sentinel)
@@ -35,7 +35,7 @@ class LinkedListDeque<T>{
     }
 
     public boolean isEmpty(){
-        return sz==0;
+        return sz == 0;
     }
 
     public int size(){
@@ -44,10 +44,10 @@ class LinkedListDeque<T>{
 
     public void printDeque(){
         Node p = sentinel;
-        while(p.nxt!=sentinel){
+        while(p.nxt != sentinel){
             p = p.nxt;
             System.out.print(p.item);
-            if(p.nxt!=sentinel){
+            if(p.nxt != sentinel){
                 System.out.print(" ");
             }
             else
@@ -56,10 +56,7 @@ class LinkedListDeque<T>{
     }
 
     public T removeFirst(){
-        // if(this.isEmpty()){
-        //     System.out.println("This list is empty!");
-        //     return 
-        // }
+        sz -= 1;
         T val = sentinel.nxt.item;
         sentinel.nxt = sentinel.nxt.nxt;
         sentinel.nxt.prev = sentinel;
@@ -67,6 +64,7 @@ class LinkedListDeque<T>{
     }
 
     public T removeLast(){
+        sz -= 1;
         T val = sentinel.prev.item;
         sentinel.prev = sentinel.prev.prev;
         sentinel.prev.nxt = sentinel;
@@ -74,23 +72,23 @@ class LinkedListDeque<T>{
     }
 
     public T get(int index){
-        if(this.size()==0){
+        if(this.size() == 0){
             System.out.println("This list has no element");
             return sentinel.item;
         }
         Node p = sentinel.nxt;
-        while(index--!=0){
+        while(index-- != 0){
             p = p.nxt;
         }
         return p.item;
     }
     
-    public T getRecursive(Node p,int index){
+    public T getRecursive(Node p, int index){
         if(p.nxt == sentinel && index!=0){
             System.out.println("Wrong index!");
             return sentinel.item;
         }
-        else if (index==0){
+        else if (index == 0){
             return p.item;
         }
         else{
@@ -99,7 +97,7 @@ class LinkedListDeque<T>{
     }
 
     public T getRecursive(int index){
-        return getRecursive(sentinel.nxt,index-1);
+        return getRecursive(sentinel.nxt, index);
     }
 
     public static void main(String[] args) {
