@@ -104,11 +104,12 @@ public class ArrayDeque<T> {
 
     public T get(int index){
         int first = (nxt_f+1)%arr.length;
-        if(index == 0){
-            return arr[first];
-        }
-        else if(index >= sz){
+        
+        if(index >= sz){
             return null;
+        }
+        else if(index == 0){
+            return arr[first];
         }
         for(int i = 1; (i <= index) && (index < sz); i++){
             first = (first+1)%arr.length;
