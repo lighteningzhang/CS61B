@@ -39,7 +39,7 @@ public class ArrayDeque<T> {
         arr[nxt_f] = item;
         nxt_f = (nxt_f-1+arr.length)%arr.length;
         if(nxt_f == nxt_l){
-            T[] n_arr = resize(sz*2-1);
+            T[] n_arr = resize(sz*2);
             arr = assign_new_arr(n_arr);
         }
     }
@@ -49,7 +49,7 @@ public class ArrayDeque<T> {
         arr[nxt_l] = item;
         nxt_l = (nxt_l+1+arr.length)%arr.length;
         if(nxt_f == nxt_l){
-            T[] n_arr = resize(sz*2-1);
+            T[] n_arr = resize(sz*2);//previously written sz*2-1 
             arr = assign_new_arr(n_arr);
         }
     }
@@ -81,7 +81,7 @@ public class ArrayDeque<T> {
         nxt_f = (nxt_f+1)%arr.length;
         T val = arr[nxt_f];
         arr[nxt_f] = null;
-       if(sz*4<arr.length){
+       if(sz*4<arr.length && arr.length>=16){
             T[] n_arr = resize(arr.length/2);
             arr = assign_new_arr(n_arr);
         }
@@ -95,7 +95,7 @@ public class ArrayDeque<T> {
         nxt_l = (nxt_l-1+arr.length)%arr.length;
         T val = arr[nxt_l];
         arr[nxt_l] = null;
-        if(sz*4<arr.length){
+        if(sz*4<arr.length && arr.length>=16){
             T[] n_arr = resize(arr.length/2);
             arr = assign_new_arr(n_arr);
         }
