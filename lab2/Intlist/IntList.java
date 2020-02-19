@@ -74,7 +74,29 @@ public class IntList {
 
     /** DO NOT MODIFY ANYTHING ABOVE THIS LINE! */
 
+    public void addAdjacent(){
+        IntList l = this;
+        while(l.rest!=null){
+            if(l.first == l.rest.first){
+                l.first = 2*l.first;
+                l.rest = l.rest.rest;
+            }
+            else{
+                l = l.rest;
+            }
+        }
+    }
 
+    public void add_square_item(){
+        
+    }
+    public static void main(String[] args) {
+        IntList l = new IntList(4,null);
+        l = new IntList(2,l);
+        l = new IntList(2,l);
+        l.addAdjacent();
+        System.out.println(l.first);
+    }
     /**
      * Returns a list consisting of the elements of A followed by the
      * *  elements of B.  May modify items of A. Don't use 'new'.
