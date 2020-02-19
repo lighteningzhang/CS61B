@@ -1,4 +1,4 @@
-class LinkedListDeque<T>{
+public class LinkedListDeque<T>{
     private Node sentinel;
     private int sz = 0;
     private class Node{
@@ -56,6 +56,8 @@ class LinkedListDeque<T>{
     }
 
     public T removeFirst(){
+        if(sz == 0)
+            return null;
         sz -= 1;
         T val = sentinel.nxt.item;
         sentinel.nxt = sentinel.nxt.nxt;
@@ -64,6 +66,8 @@ class LinkedListDeque<T>{
     }
 
     public T removeLast(){
+        if(sz == 0)
+            return null;
         sz -= 1;
         T val = sentinel.prev.item;
         sentinel.prev = sentinel.prev.prev;
