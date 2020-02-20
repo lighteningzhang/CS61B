@@ -24,7 +24,7 @@ public class Palindrome {
 
     }
 
-    public boolean isPalindrome(Deque<Character>word, CharacterComparator cc) {
+    private boolean isPalindrome(Deque<Character>word, CharacterComparator cc) {
         if(word.isEmpty() || word.size() == 1) {
             return true;
         }
