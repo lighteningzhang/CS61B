@@ -27,6 +27,19 @@ public class IntListTest {
         assertEquals(IntList.of(1, 4, 9), L);
     }
 
+    @Test(timeout = 10)
+    public static void testReverse() {
+        IntList L = IntList.of(1, 2, 3);
+        IntList rev = IntList.reverse(L);
+        /***
+         * Test if it's a destructive method
+         */
+        assertEquals(L, IntList.of(1, 2, 3));
+        assertEquals(rev, IntList.of(3, 2, 1));
+
+        IntList revn = IntList.reverse(null);
+        assertEquals(null, revn);
+    }
     /**
      * Do not use the new keyword in your tests. You can create
      * lists using the handy IntList.of method.
@@ -69,5 +82,7 @@ public class IntListTest {
     /** If you're running this from the command line, you'll need
       * to add a main method. See ArithmeticTest.java for an
       * example. */
-
+    public static void main(String[] args) {
+        testReverse();
+    }
 }
