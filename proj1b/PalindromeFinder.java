@@ -6,9 +6,17 @@ public class PalindromeFinder {
         In in = new In("../library-sp18/data/words.txt");
         Palindrome palindrome = new Palindrome();
 
+
+//        while (!in.isEmpty()) {
+//            String word = in.readString();
+//            if (word.length() >= minLength && palindrome.isPalindrome(word)) {
+//                System.out.println(word);
+//            }
+//        }
+        OffByOne offByOne = new OffByOne();
         while (!in.isEmpty()) {
             String word = in.readString();
-            if (word.length() >= minLength && palindrome.isPalindrome(word)) {
+            if(word.length() >= minLength && palindrome.isPalindrome(word, offByOne)) {
                 System.out.println(word);
             }
         }
