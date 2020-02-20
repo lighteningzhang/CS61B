@@ -29,7 +29,7 @@ public class IntListTest {
     }
 
     @Test(timeout = 10)
-    public void testReverse() {
+    public static void testReverse() {
         IntList L = IntList.of(1, 2, 3);
         IntList rev = IntList.reverse(L);
         assertEquals(L, IntList.of(1, 2, 3));
