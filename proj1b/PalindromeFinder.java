@@ -13,10 +13,18 @@ public class PalindromeFinder {
 //                System.out.println(word);
 //            }
 //        }
-        OffByOne offByOne = new OffByOne();
+//        OffByOne offByOne = new OffByOne();
+//        while (!in.isEmpty()) {
+//            String word = in.readString();
+//            if(word.length() >= minLength && palindrome.isPalindrome(word, offByOne)) {
+//                System.out.println(word);
+//            }
+//        }
+
+        OffByN offByN = new OffByN(3);
         while (!in.isEmpty()) {
             String word = in.readString();
-            if(word.length() >= minLength && palindrome.isPalindrome(word, offByOne)) {
+            if(word.length() >= minLength && palindrome.isPalindrome(word, offByN)) {
                 System.out.println(word);
             }
         }
