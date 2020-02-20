@@ -130,18 +130,23 @@ public class IntList {
         }
         while(A != null) {
             L.rest = new IntList(A.first, null);
-            if(L.rest!=null)
-                L = L.rest;
+            L = L.rest;
             A = A.rest;
         }
     // 1->2->3->null||
-        if(B == null) {
+        if (B == null) {
             return P;
         }
-        L.rest = new IntList(B.first, null);
-        L = L.rest;
+        if (P == null) {
+            L = new IntList(B.first, null);
+            P = L;
+        }
+        else {
+            L.rest = new IntList(B.first, null);
+            L = L.rest;
+        }
         B = B.rest;
-        while(B != null) {
+        while (B != null) {
             L.rest = new IntList(B.first, null);
             L = L.rest;
             B = B.rest;
