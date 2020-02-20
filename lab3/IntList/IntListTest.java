@@ -2,6 +2,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+@SuppressWarnings("CheckStyle")
 public class IntListTest {
 
     /**
@@ -28,12 +29,9 @@ public class IntListTest {
     }
 
     @Test(timeout = 10)
-    public static void testReverse() {
+    public void testReverse() {
         IntList L = IntList.of(1, 2, 3);
         IntList rev = IntList.reverse(L);
-        /***
-         * Test if it's a destructive method
-         */
         assertEquals(L, IntList.of(1, 2, 3));
         assertEquals(rev, IntList.of(3, 2, 1));
 
