@@ -54,13 +54,39 @@ public class ArraySet<T> implements Iterable<T>{
         return sz;
     }
 
+    @Override
+    public String toString(){
+        StringBuilder returnString = new StringBuilder("{");
+        // for(int i = 0;i<sz;i++)
+        for(T item:this){
+            returnString.append(item.toString());
+            returnString.append(",");
+        }
+        returnString.append("}");
+        return returnString.toString();
+    }
+    @Override
+    public boolean equals(Object other){
+        if(this == other) return true;
+        if(other == null) return false;
+        if(this.getClass()!=other.getClass()) return false;
+        ArraySet<T> o = (ArraySet<T>) other;
+        if(o.size()!=this.size()) return false;
+
+        for(T i : o){
+            if(!this.contains(i)){
+                return false;
+            }
+        }
+        return true;
+    }
     public static void main(String[] args) {
         ArraySet<String> s = new ArraySet<>();
         // s.add(null);
         s.add("horse");
         s.add("fish");
         s.add("house");
-        s.add("fish");        
+        s.add("fish");  
         System.out.println(s.contains("horse"));        
         System.out.println(s.size());   
     
@@ -77,9 +103,10 @@ public class ArraySet<T> implements Iterable<T>{
         //     String i = seer.next();
         //     System.out.println(i);
         // }
-        for(String i:s){
-            System.out.println(i);
-        }
+        // for(String i:s){
+        //     System.out.println(i);W
+        // }
+        System.out.println(s.equals(s));
     }
 
     /* Also to do:
