@@ -1,6 +1,8 @@
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Iterator;
+import java.util.List;
+import java.util.ArrayList;
 @SuppressWarnings (value="unchecked")
 public class ArraySet<T> implements Iterable<T>{
     private T[] buildSet;
@@ -56,14 +58,11 @@ public class ArraySet<T> implements Iterable<T>{
 
     @Override
     public String toString(){
-        StringBuilder returnString = new StringBuilder("{");
-        // for(int i = 0;i<sz;i++)
-        for(T item:this){
-            returnString.append(item.toString());
-            returnString.append(",");
+        List<String>l = new ArrayList<String>();
+        for(T i : this){
+            l.add(i.toString());
         }
-        returnString.append("}");
-        return returnString.toString();
+        return "{"+String.join(",",l)+"}";
     }
     @Override
     public boolean equals(Object other){
@@ -79,6 +78,13 @@ public class ArraySet<T> implements Iterable<T>{
             }
         }
         return true;
+    }
+    public static <Glerp>ArraySet<Glerp> of(Glerp... items){
+        ArraySet newASet = new ArraySet<>();
+        for(Glerp i:items){
+            newASet.add(i);
+        }
+        return newASet;
     }
     public static void main(String[] args) {
         ArraySet<String> s = new ArraySet<>();
@@ -106,7 +112,9 @@ public class ArraySet<T> implements Iterable<T>{
         // for(String i:s){
         //     System.out.println(i);W
         // }
-        System.out.println(s.equals(s));
+        Set<Integer>s4 = Set.of(53,4,5);
+        ArraySet<Integer>s3 = ArraySet.of(1,2,3);
+        System.out.println(s4);
     }
 
     /* Also to do:
