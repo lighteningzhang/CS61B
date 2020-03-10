@@ -73,9 +73,10 @@ public class Plip extends Creature {
      * to avoid the magic number warning, you'll need to make a
      * private static final variable. This is not required for this lab.
      */
+    private static final double moveLoss = 0.15;
     public void move() {
         // TODO
-        energy -= 0.15;
+        energy -= moveLoss;
         if(energy<0) energy = 0;
     }
 
