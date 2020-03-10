@@ -1,15 +1,13 @@
 package creatures;
 
-import huglife.Creature;
-import huglife.Direction;
-import huglife.Action;
-import huglife.Occupant;
+import huglife.*;
 
 import java.awt.Color;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Map;
-
+import java.util.Random;
+import static huglife.HugLifeUtils.randomEntry;
 /**
  * An implementation of a motile pacifist photosynthesizer.
  *
@@ -57,7 +55,9 @@ public class Plip extends Creature {
      * that you get this exactly correct.
      */
     public Color color() {
-        g = 63;
+        r = 99;
+        b = 76;
+        g = 63+96*(int)(energy);
         return color(r, g, b);
     }
 
@@ -75,6 +75,8 @@ public class Plip extends Creature {
      */
     public void move() {
         // TODO
+        energy -= 0.15;
+        if(energy<0) energy = 0;
     }
 
 
@@ -83,6 +85,8 @@ public class Plip extends Creature {
      */
     public void stay() {
         // TODO
+        energy+=0.2;
+        if(energy>2) energy = 2;
     }
 
     /**
@@ -91,7 +95,8 @@ public class Plip extends Creature {
      * Plip.
      */
     public Plip replicate() {
-        return this;
+        energy = energy/2;
+        return new Plip(energy);
     }
 
     /**
@@ -114,17 +119,39 @@ public class Plip extends Creature {
         // TODO
         // (Google: Enhanced for-loop over keys of NEIGHBORS?)
         // for () {...}
-
-        if (false) { // FIXME
-            // TODO
+        for(Direction k:neighbors.keySet()){
+            if(neighbors.get(k).name().equals("empty")){
+                emptyNeighbors.add(k);
+            }
+            else if(neighbors.get(k).name().equals("clorus")){
+                anyClorus = true;
+            }
         }
+        int sz = emptyNeighbors.size();
 
+        if(energy>=1 && sz>0){
+//            int randInt = new Random().nextInt(sz)+1;
+//            Direction dir = emptyNeighbors.peek();
+//            while(i!=randInt){
+//                emptyNeighbors.poll();
+//                i++;
+//            }
+//                dir = emptyNeighbors.poll();
+
+            return new Action(Action.ActionType.REPLICATE,randomEntry(emptyNeighbors));
+        }
+        else if(anyClorus && sz>0) {
+            return new Action(Action.ActionType.MOVE,randomEntry(emptyNeighbors));
+        }
+        else{
+            return new Action(Action.ActionType.STAY);
+        }
         // Rule 2
         // HINT: randomEntry(emptyNeighbors)
 
         // Rule 3
 
         // Rule 4
-        return new Action(Action.ActionType.STAY);
+
     }
 }
