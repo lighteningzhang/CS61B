@@ -1,6 +1,6 @@
 package es.datastructur.synthesizer;
 
-public interface BoundQueue<T> {
+public interface BoundedQueue<T> {
     int capacity();
     int fillCount();
     void enqueue(T x);
