@@ -9,7 +9,7 @@ public class GuitarHeroLite {
         /* create two guitar strings, for concert A and C */
         GuitarString stringA = new GuitarString(CONCERT_A);
         GuitarString stringC = new GuitarString(CONCERT_C);
-
+        stringC.pluck();
         while (true) {
 
             /* check if the user has typed a key; if so, process it */

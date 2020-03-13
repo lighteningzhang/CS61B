@@ -1,4 +1,5 @@
 package es.datastructur.synthesizer;
+import java.awt.*;
 import java.util.Iterator;
 public class ArrayRingBuffer<T> implements BoundedQueue<T> {
     /* Index for the next dequeue or peek. */
@@ -31,15 +32,32 @@ public class ArrayRingBuffer<T> implements BoundedQueue<T> {
         return fillCount;
     }
 
-    private int movLastP() {
+    protected int movLastP() {
         last = (last+1)%cap;
         return last;
     }
 
-    private int movFirP() {
+    protected int movFirP() {
         first = (first+1)%cap;
         return first;
     }
+
+    public void print() {
+        int f = first;
+        int l = last;
+        while(first != last) {
+
+            System.out.print(rb[first]+" ");
+            movFirP();
+        }
+        System.out.println();
+    }
+
+    public int getFirst() { return first;}
+
+    public int getLast() { return last; }
+
+    public T[] getArray() {return rb;}
     /**
      * Adds x to the end of the ring buffer. If there is no room, then
      * throw new RuntimeException("Ring buffer overflow").
