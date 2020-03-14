@@ -1,5 +1,4 @@
 package es.datastructur.synthesizer;
-import java.awt.*;
 import java.util.Iterator;
 public class ArrayRingBuffer<T> implements BoundedQueue<T> {
     /* Index for the next dequeue or peek. */
@@ -14,12 +13,54 @@ public class ArrayRingBuffer<T> implements BoundedQueue<T> {
     /**
      * Create a new ArrayRingBuffer with the given capacity.
      */
+    private class ArrayRBIterator implements Iterator<T> {
+        int fir;
+        ArrayRBIterator() {
+            fir = first;
+        }
+
+        public boolean hasNext() {
+            return fir < last;
+        }
+
+        public T next() {
+            if (fir >= last) {
+                throw new RuntimeException("Ring Buffer overflow!");
+            }
+            fir = (fir + 1) % cap;
+            return rb[fir];
+        }
+    }
+    @Override
+    public Iterator<T> iterator() {
+        return new ArrayRBIterator();
+    }
+
     public ArrayRingBuffer(int capacity) {
         cap = capacity;
         // TODO: Create new array with capacity elements.
         //       first, last, and fillCount should all be set to 0.
         first = last = fillCount = 0;
         rb = (T[]) new Object[capacity];
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this.getClass() != o.getClass()) {
+            return false;
+        }
+        ArrayRingBuffer obj = (ArrayRingBuffer) o;
+        if (this.capacity() != obj.capacity()) {
+            return false;
+        }
+        int f1;
+        f1 = first;
+        while(f1 != last) {
+            if(rb[f1] != rb[f1]) {
+                return false;
+            }
+            f1 = (f1 + 1) % this.cap;
+        }
+        return true;
     }
 
     @Override
@@ -33,19 +74,19 @@ public class ArrayRingBuffer<T> implements BoundedQueue<T> {
     }
 
     protected int movLastP() {
-        last = (last+1)%cap;
+        last = (last + 1) % cap;
         return last;
     }
 
     protected int movFirP() {
-        first = (first+1)%cap;
+        first = (first + 1) % cap;
         return first;
     }
 
     public void print() {
         int f = first;
         int l = last;
-        while(first != last) {
+        while (first != last) {
 
             System.out.print(rb[first]+" ");
             movFirP();
